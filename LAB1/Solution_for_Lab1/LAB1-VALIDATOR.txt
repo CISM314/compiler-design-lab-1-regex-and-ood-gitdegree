@@ -1,0 +1,93 @@
+=====================================CORRECT==========================================
+
+package validator;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.Scanner;
+
+public class Validator {
+    
+   
+    static Scanner console = new Scanner(System.in);
+    public static void main(String[] args) {
+        
+        ValidatorOfDomain validatorOfDomain = new ValidatorOfDomain();
+        PhoneNumberValidator phoneNumberValidator = new PhoneNumberValidator();
+        
+        String saNumber;
+        String TheDomain;
+        System.out.println("Enter your phone number");
+        saNumber = console.next();
+        System.out.println("Enter your Email address");
+        TheDomain = console.next();
+       
+
+        if(phoneNumberValidator.numberIsValid(saNumber) )
+            System.out.println("The number you have entered is valid");
+        else
+            System.out.println("The number you have entered is invalid");
+        
+        System.out.println();
+        
+        if(validatorOfDomain.isValid(TheDomain))
+            System.out.println("The Email you have entered is valid");
+        else
+            System.out.println("The Email you have entered is invalid");
+        
+    }
+    
+}
+
+=========================================================================================
+
+package validator;
+
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+
+public class ValidatorOfDomain {
+      public static boolean isValid(String domain)
+    {
+        String domainRegex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
+                                  
+        Pattern pat = Pattern.compile(domainRegex);
+        if (domain == null)
+            return false;
+        return pat.matcher(domain).matches();
+    }
+      
+      
+      public static boolean SAnumberIsValid(String SAnumbers)
+    {
+       String SAphoneNumberRegex = "^((?:\\+27|27)|0)(=72|82|73|83|74|84|071|60)+(\\d{7})$";
+               
+                             
+        Pattern pat = Pattern.compile(SAphoneNumberRegex);
+        if (SAnumbers == null)
+            return false;
+        return pat.matcher(SAnumbers).matches();
+    }
+    
+}
+
+
+=========================================================================================
+
+package validator;
+
+import java.util.regex.Pattern;
+
+ public class PhoneNumberValidator {
+    
+      public static boolean numberIsValid(String numbers)
+    {
+       String phoneNumberRegex = "^((?:\\+27|27)|0)(=72|82|73|83|74|84|071|60)+(\\d{7})$";
+               
+                             
+        Pattern pat = Pattern.compile(phoneNumberRegex);
+        if (numbers == null)
+            return false;
+        return pat.matcher(numbers).matches();
+    }
+}
